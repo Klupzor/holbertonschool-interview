@@ -15,6 +15,9 @@ def canUnlockAll(boxes):
 
 def unlock(boxes, locked, keys):
     for key in keys:
-        if locked[key]:
-            locked[key] = False
-            unlock(boxes, locked, boxes[key])
+        try:
+            if locked[key]:
+                locked[key] = False
+                unlock(boxes, locked, boxes[key])
+        except KeyError:
+            pass
