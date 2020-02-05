@@ -3,6 +3,8 @@
 
 
 def canUnlockAll(boxes):
+    if len(boxes) is 0:
+        return False
     locked = {box: True for box in range(1, len(boxes))}
     locked.update({0: False})
     keys = boxes[0]
