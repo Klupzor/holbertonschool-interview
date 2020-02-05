@@ -3,7 +3,7 @@
 
 
 def canUnlockAll(boxes):
-    if len(boxes) is 0:
+    if len(boxes) is 0 or type(boxes) is not list:
         return False
     locked = {box: True for box in range(1, len(boxes))}
     locked.update({0: False})
