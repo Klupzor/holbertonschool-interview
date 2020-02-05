@@ -7,7 +7,7 @@ def canUnlockAll(boxes):
     locked.update({0: False})
     keys = boxes[0]
     unlock(boxes, locked, keys)
-    
+
     if True in locked.values():
         return False
     return True
