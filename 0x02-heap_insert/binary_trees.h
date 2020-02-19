@@ -27,4 +27,14 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 typedef struct binary_tree_s heap_t;
 heap_t *heap_insert(heap_t **root, int value);
 
+typedef struct list_trees
+{
+	struct binary_tree_s *node;
+	struct list_trees *next;
+} list_t;
+
+list_t *add_node_end(list_t *head, heap_t *node);
+list_t *rmv_node_head(list_t *head);
+int len_list(list_t *head);
+
 #endif /* _BINARY_TREES_H_ */
