@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 """
 Min operatation: Copy All and Paste
 """
