@@ -10,7 +10,7 @@
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int is_stable, printed;
+	int is_stable, printed, i, j;
 	int prev[3][3];
 
 	sum_grids(grid1, grid2);
@@ -19,9 +19,9 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		printed = 0;
 
 		clean_grid(prev);
-		for (int i = 0; i < 3; i++)
+		for (i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < 3; j++)
+			for (j = 0; j < 3; j++)
 			{
 				if (grid1[i][j] > 3)
 				{
@@ -77,9 +77,11 @@ void explote_node(int node_x, int node_y, int grid[3][3])
 
 void show_grid(int grid[3][3])
 {
-	for (int y = 0; y < 3; y++)
+	int y, x;
+
+	for (y = 0; y < 3; y++)
 	{
-		for (int x = 0; x < 3; x++)
+		for (x = 0; x < 3; x++)
 		{
 			if (x)
 				printf(" ");
@@ -99,10 +101,11 @@ void show_grid(int grid[3][3])
 
 void sum_grids(int grid1[3][3], int grid2[3][3])
 {
+	int i, j;
 
-	for (int i = 0; i < 3; i++)
+	for (i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (j = 0; j < 3; j++)
 		{
 			grid1[i][j] += grid2[i][j];
 		}
@@ -118,10 +121,11 @@ void sum_grids(int grid1[3][3], int grid2[3][3])
 
 void clean_grid(int temp[3][3])
 {
+	int i, j;
 
-	for (int i = 0; i < 3; i++)
+	for (i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (j = 0; j < 3; j++)
 		{
 			temp[i][j] = 0;
 		}
