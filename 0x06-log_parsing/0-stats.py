@@ -30,5 +30,6 @@ for arg in sys.stdin:
         print("File size: {}".format(Tsize))
 
         for k, v in sorted(status_code.items()):
-            print("{}: {}".format(k, v))
+            if status_code[k] != 0:
+                print("{}: {}".format(k, v))
         cont = 0
