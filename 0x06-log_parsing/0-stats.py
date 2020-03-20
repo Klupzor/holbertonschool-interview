@@ -7,14 +7,14 @@ import sys
 Tsize = 0
 cont = 0
 status_code = {
-    200: 0,
-    301: 0,
-    400: 0,
-    401: 0,
-    403: 0,
-    404: 0,
-    405: 0,
-    500: 0
+    '200': 0,
+    '301': 0,
+    '400': 0,
+    '401': 0,
+    '403': 0,
+    '404': 0,
+    '405': 0,
+    '500': 0
 }
 
 try:
@@ -22,7 +22,7 @@ try:
         args = arg.split(" ")
         if len(args) > 2:
             size = args[-1]
-            code = int(args[-2])
+            code = args[-2]
             if code in status_code:
                 status_code[code] += 1
 
