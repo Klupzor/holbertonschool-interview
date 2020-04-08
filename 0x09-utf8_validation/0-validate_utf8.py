@@ -1,16 +1,25 @@
 #!/usr/bin/python3
-"""
-Main file for testing
-"""
 
 
 def validUTF8(data):
-    errors = ['0c', '1c', '5f', '7f', '8f', '9f',
-              'af', 'bf', 'cf', 'df', 'df', 'ef', 'ff']
-    chars = [hex(num) for num in data]
-    for char in chars:
-        hexnum = char[2:]
-        if hexnum in errors:
-            return(False)
+    n_bytes = 0
+    mask1 = 1 << 7
+    mask2 = 1 << 6
 
-    return(True)
+    for char in data:
+        mask = 1 << 7
+        if n_bytes == 0:
+            while mask & char:
+                n_bytes += 1
+                mask = mask >> 1
+
+            if n_bytes == 0:
+                continue
+
+            if n_bytes == 1 or n_bytes > 4:
+                return False
+        else:
+            if not (char & mask1 and not (char & mask2)):
+                return False
+        n_bytes -= 1
+    return n_bytes == 0
