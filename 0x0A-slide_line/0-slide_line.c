@@ -1,6 +1,26 @@
 #include "slide_line.h"
 
 /**
+ * find_partner - merges array int
+ *
+ * @line: Pointer to the array of integer to be printed
+ * @size: Number of elements in @array
+ */
+void find_partner(int *line, size_t size)
+{
+	size_t left, right;
+
+	for (right = 1, left = 0; right < size; right++, left++)
+	{
+		if (line[left] == line[right])
+		{
+			line[left] = line[left] * 2;
+			line[right] = 0;
+		}
+	}
+}
+
+/**
  * slide_left - slides and merges to left an array of integers
  *
  * @line: Pointer to the array of integer to be printed
@@ -10,43 +30,29 @@
 
 int slide_left(int *line, size_t size)
 {
-	size_t left, right, temp;
+	size_t left, right;
 
-	if ((line[0] == 0))
-	{
-		temp = 0;
-		while (line[temp] == 0)
-		{
-			if (temp >= size)
-				return (1);
-			temp++;
-		}
-		line[0] = line[temp];
-		line[temp] = 0;
-	}
 	left = 0;
-	for (right = 1; right < size; right++)
+	while (line[left] != 0)
 	{
-		if (line[left] == line[right])
+		if (left >= size)
+			return (1);
+		left++;
+	}
+
+	for (right = left + 1; right < size; right++)
+	{
+		if (line[right] != 0)
 		{
-			line[left] = line[left] * 2;
+			line[left] = line[right];
 			line[right] = 0;
-			right++;
-			while (line[right] == 0)
+			while (line[left] != 0)
 			{
-				if (right >= size)
+				if (left >= size)
 					return (1);
-				right++;
+				left++;
 			}
-			left++;
-			line[left] = line[right];
-			line[right] = 0;
-		}
-		else if (line[right] != 0 && line[left + 1] == 0)
-		{
-			left++;
-			line[left] = line[right];
-			line[right] = 0;
+			right = left;
 		}
 	}
 	return (1);
@@ -62,43 +68,28 @@ int slide_left(int *line, size_t size)
 
 int slide_right(int *line, size_t size)
 {
-	size_t left, right, temp;
+	size_t left, right;
 
-	if (line[size - 1] == 0)
-	{
-		temp = size - 1;
-		while (line[temp - 1] == 0)
-		{
-			if (temp <= 1)
-				return (1);
-			temp--;
-		}
-		line[size - 1] = line[temp - 1];
-		line[temp - 1] = 0;
-	}
 	right = size - 1;
-	for (left = size - 1; left >= 1; left--)
+	while (line[right] != 0)
 	{
-		if (line[left - 1] == line[right])
+		if (right == 0)
+			return (1);
+		right--;
+	}
+	for (left = right; left > 0; left--)
+	{
+		if (line[left - 1] != 0)
 		{
-			line[right] = line[right] * 2;
+			line[right] = line[left - 1];
 			line[left - 1] = 0;
-			left--;
-			while (line[left - 1] == 0)
+			while (line[right] != 0)
 			{
-				if (left <= 1)
+				if (right == 0)
 					return (1);
-				left--;
+				right--;
 			}
-			right--;
-			line[right] = line[left - 1];
-			line[left - 1] = 0;
-		}
-		else if (line[left - 1] != 0 && line[right - 1] == 0)
-		{
-			right--;
-			line[right] = line[left - 1];
-			line[left - 1] = 0;
+			left = right + 1;
 		}
 	}
 	return (1);
@@ -119,11 +110,15 @@ int slide_line(int *line, size_t size, int direction)
 	if (direction == 1)
 	{
 		slide_left(line, size);
+		find_partner(line, size);
+		slide_left(line, size);
 		return (1);
 	}
 
 	if (direction == 2)
 	{
+		slide_right(line, size);
+		find_partner(line, size);
 		slide_right(line, size);
 		return (1);
 	}
