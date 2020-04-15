@@ -12,9 +12,9 @@ int slide_left(int *line, size_t size)
 {
 	size_t left, right, temp;
 
-	temp = 0;
-	if ((line[temp] == 0))
+	if ((line[0] == 0))
 	{
+		temp = 0;
 		while (line[temp] == 0)
 		{
 			if (temp >= size)
@@ -61,17 +61,17 @@ int slide_right(int *line, size_t size)
 {
 	size_t left, right, temp;
 
-	temp = size - 1;
-	if (line[temp - 1] == 0)
+	if (line[size - 1] == 0)
 	{
-	while (line[temp - 1] == 0)
-	{
-		if (temp <= 1)
-			return (1);
-		temp--;
-	}
-	line[size - 1] = line[temp - 1];
-	line[temp - 1] = 0;
+		temp = size - 1;
+		while (line[temp - 1] == 0)
+		{
+			if (temp <= 1)
+				return (1);
+			temp--;
+		}
+		line[size - 1] = line[temp - 1];
+		line[temp - 1] = 0;
 	}
 	right = size - 1;
 	for (left = size - 1; left >= 1; left--)
