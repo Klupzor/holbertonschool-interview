@@ -14,6 +14,6 @@ void menger(int level)
 	for (x = n * n; x--;)
 	{
 		printf(x & x / 2 & n * n / 3 ? "" : x & x / n & n / 3
-		? "  " : x & (n - 1) ? "# " : "#\n");
+		? " " : x & (n - 1) ? "#" : "#\n");
 	}
 }
