@@ -61,7 +61,8 @@ avl_t *arrayToTree(int array[], int start, int end, avl_t *parent)
 
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	int end = size - 1;
+	if (!array)
+		return (NULL);
 
-	return (arrayToTree(array, 0, end, NULL));
+	return (arrayToTree(array, 0, size - 1, NULL));
 }
