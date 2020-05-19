@@ -44,6 +44,9 @@ avl_t *arrayToTree(int array[], int start, int end, avl_t *parent)
 	mid = (start + end) / 2;
 	root = newNode(parent, array[mid]);
 
+	if (!root)
+		return (NULL);
+
 	root->left = arrayToTree(array, start, mid - 1, root);
 
 	root->right = arrayToTree(array, mid + 1, end, root);
