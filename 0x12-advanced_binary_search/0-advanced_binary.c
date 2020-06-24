@@ -42,8 +42,8 @@ int binary_search(int *a, int l, int r, int v)
 
 			return (mid);
 		}
-		if (a[mid] > v)
-			return (binary_search(a, l, mid - 1, v));
+		if (a[mid] >= v)
+			return (binary_search(a, l, mid, v));
 		return (binary_search(a, mid + 1, r, v));
 	}
 	return (-1);
