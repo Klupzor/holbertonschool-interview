@@ -44,10 +44,10 @@ void merge(int *array, int *l, int *r, size_t s)
  **/
 void merge_sort(int *array, size_t size)
 {
-	size_t m = 0;
+	size_t m;
 	size_t i;
-	int l[size / 2];
-	int r[size / 2];
+	int l[1000];
+	int r[1000];
 
 	if (size <= 1 || !array)
 		return;
