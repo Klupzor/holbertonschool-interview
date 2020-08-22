@@ -1,5 +1,5 @@
-#ifndef merge_SORT_H
-#define MERGEi_SORT_H
+#ifndef MERGE_SORT_H
+#define MERGE_SORT_H
 #include <stdio.h>
 #include <stdlib.h>
 void print_array(const int *array, size_t size);
