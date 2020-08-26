@@ -5,6 +5,8 @@ makeChance function
 
 
 def makeChange(coins, total):
+    if total <= 0:
+        return 0
     cont = 0
     coins.sort(reverse=True)
 
