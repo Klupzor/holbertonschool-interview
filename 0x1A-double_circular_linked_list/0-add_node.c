@@ -14,9 +14,15 @@ List *node(List **list, char *str)
 	if (new == NULL)
 		return (NULL);
 	new->str = strdup(str);
+	if (new->str == NULL)
+	{
+		free(str);
+		return (NULL);
+	}
 	new->next = new;
 	new->prev = new;
 	*list = new;
+
 	return (new);
 }
 /**
@@ -39,6 +45,11 @@ List *add_node_end(List **list, char *str)
 	if (new == NULL)
 		return (NULL);
 	new->str = strdup(str);
+	if (new->str == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
 	new->next = aux;
 	new->prev = aux->prev;
 	tmp = aux->prev;
@@ -67,6 +78,11 @@ List *add_node_begin(List **list, char *str)
 	if (new == NULL)
 		return (NULL);
 	new->str = strdup(str);
+	if (new->str == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
 	new->next = aux;
 	new->prev = aux->prev;
 	tmp = aux->prev;
@@ -75,5 +91,4 @@ List *add_node_begin(List **list, char *str)
 	*list = new;
 
 	return (new);
-
 }
